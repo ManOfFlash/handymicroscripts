@@ -1,0 +1,6 @@
+#!/bin/sh
+#V1.0 .. 4.0
+#cat $1 | grep '#' --invert-match | sort --ignore-case
+#egrep -v '^#|^$' $1
+#egrep -v '^#|^\s#|^\s$' $1
+cat $1 | grep -v ^# | grep -v ^$

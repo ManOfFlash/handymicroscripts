@@ -1,0 +1,13 @@
+#!/bin/sh
+#lans v 1.1
+my_name=${0##*/}
+pth=/proc/sys/net/ipv4/conf/
+
+if [ "$my_name" == "lans" ]; then
+ls $pth | awk '/^lan[[:digit:]]/ { system("ifconfig " $1) }'
+fi
+
+if [ "$my_name" == "vlans" ]; then
+ls $pth | awk '/^vlan[[:digit:]]/ { system("ifconfig " $1) }'
+fi
+

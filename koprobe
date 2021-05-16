@@ -1,0 +1,10 @@
+#!/bin/sh
+#V 1.0
+if [ ! $1 ]; then
+echo "Usage: $0 <kernelmodule.ko>";
+echo "Probes module in format with .ko extension";
+else
+NAME=$(basename $1 .ko)
+modprobe $NAME
+fi
+

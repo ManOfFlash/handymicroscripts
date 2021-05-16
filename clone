@@ -1,0 +1,11 @@
+#!/bin/sh
+if [ ! $1 ]; then
+echo "Usage: $0 <file to clone> [prefix]";
+else
+if [ ! $2 ]; then
+PRX="orig_"
+else
+PRX=$2
+fi
+cp -i $1 $PRX$1
+fi
