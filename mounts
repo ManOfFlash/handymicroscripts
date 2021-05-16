@@ -1,0 +1,1 @@
+mount | grep -E "^\/dev\/(s[a-z][a-z]|hd[a-z]|sr)[[:digit:]]*.*$"
