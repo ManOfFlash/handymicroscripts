@@ -8,5 +8,4 @@ do
     cp $fl $dest_dir
 done
 
-echo Copying done. Press enter to continue.
-read
+read -p "Copying done. Press enter to continue." temp
