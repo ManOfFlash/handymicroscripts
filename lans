@@ -1,6 +1,9 @@
 #!/bin/sh
-#lans v 1.1
+#lans v 1.2
 my_name=${0##*/}
+
+old()
+{
 pth=/proc/sys/net/ipv4/conf/
 
 if [ "$my_name" == "lans" ]; then
@@ -10,4 +13,20 @@ fi
 if [ "$my_name" == "vlans" ]; then
 ls $pth | awk '/^vlan[[:digit:]]/ { system("ifconfig " $1) }'
 fi
+}
 
+#find /sys/class/net -type l -not -lname '*virtual*' -printf '%f\n'
+
+if [ "$my_name" == "lans" ]; then
+ifs_list=$(find /sys/class/net -type l -not -lname '*virtual*' -printf '%f ')
+fi
+
+if [ "$my_name" == "vlans" ]; then
+ifs_list=$(find /sys/class/net -type l -lname '*vlan*' -printf '%f ')
+fi
+
+echo ifs_list=$ifs_list
+for ss in $ifs_list
+do
+ifconfig $ss
+done
