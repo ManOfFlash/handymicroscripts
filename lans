@@ -1,16 +1,16 @@
 #!/bin/sh
-#lans v 2
+#lans v 2.1
 my_name=${0##*/}
 
 if [ "$my_name" = "lans" ]; then
-ifs_list=$(find /sys/class/net -type l -not -lname '*virtual*' -printf '%f ')
+ifs_list=$(find /sys/class/net -maxdepth 1 -type l -not -lname '*virtual*' -printf '%f\n' | sort -V)
 fi
 
 if [ "$my_name" = "vlans" ]; then
-ifs_list=$(find /sys/class/net -type l -lname '*vlan*' -printf '%f ')
+ifs_list=$(find /sys/class/net -maxdepth 1 -type l -lname '*vlan*' -printf '%f\n' | sort -V)
 fi
 
 for ss in $ifs_list
 do
-ifconfig $ss
+    ifconfig $ss
 done
