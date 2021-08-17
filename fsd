@@ -1,8 +1,9 @@
-#!/bin/sh
-#V1.0  find socket descriptors
+#!/usr/bin/env sh
+#V1.1 find socket descriptors
 if [ ! $1 ]; then
-echo "Usage: $0 <process name|user|port|IP address|...>";
-echo "shows opened IPv4 descriptors given keyword";
+  echo "Usage: $0 <process name|user|port|IP address|...>";
+  echo "shows opened IPv4 descriptors given keyword";
 else
-lsof -n -P -i -U| grep $1 | grep grep --invert-match | grep "$0 $1" --invert-match
+  #i[nternet] n[o resove hostnames] P[ort name lookup disable] U[nix sockets]
+  lsof -i -n -P -U | grep $1 | grep grep --invert-match | grep "$0 $1" --invert-match
 fi

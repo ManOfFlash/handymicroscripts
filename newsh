@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #V1.0
-if [ -z $1 ]; then
-echo "Please provide 1 parameter"
+if [ -z "$1" ]; then
+  echo "Please provide 1 parameter"
 else
-fl=$1.sh
-echo '#!/bin/sh'>$fl
-chmod +x $fl
+  fl=$1.sh
+  echo '#!/usr/bin/env sh'>"$fl"
+  chmod +x $fl
 fi

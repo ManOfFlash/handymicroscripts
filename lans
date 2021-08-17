@@ -1,16 +1,18 @@
-#!/bin/sh
-#lans v 2.1
-my_name=${0##*/}
+#!/usr/bin/env sh
+#lans v2.1 Shows network adapter info
+UTIL=ifconfig
 
-if [ "$my_name" = "lans" ]; then
-ifs_list=$(find /sys/class/net -maxdepth 1 -type l -not -lname '*virtual*' -printf '%f\n' | sort -V)
+SCRIPT_NAME=${0##*/}
+
+if [ "$SCRIPT_NAME" = "lans" ]; then
+  ifs_list=$(find /sys/class/net -maxdepth 1 -type l -not -lname '*virtual*' -printf '%f\n' | sort -V)
 fi
 
-if [ "$my_name" = "vlans" ]; then
-ifs_list=$(find /sys/class/net -maxdepth 1 -type l -lname '*vlan*' -printf '%f\n' | sort -V)
+if [ "$SCRIPT_NAME" = "vlans" ]; then
+  ifs_list=$(find /sys/class/net -maxdepth 1 -type l -lname '*vlan*' -printf '%f\n' | sort -V)
 fi
 
 for ss in $ifs_list
 do
-    ifconfig $ss
+  $UTIL $ss
 done
