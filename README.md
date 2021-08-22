@@ -1,6 +1,6 @@
 # Project Title
 
-A few linux shall scripts that i use near-every day
+A few linux shell scripts that i use near-every day
 
 ## Description
 
